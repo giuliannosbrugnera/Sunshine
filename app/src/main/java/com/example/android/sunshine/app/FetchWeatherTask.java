@@ -1,7 +1,9 @@
 package com.example.android.sunshine.app;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -38,13 +40,19 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
     /**
      * Prepare the weather high/lows for presentation.
      */
-    private String formatHighLows(double high, double low) {
-        // For presentation, assume the user doesn't care about tenths of a degree.
-        long roundedHigh = Math.round(high);
-        long roundedLow = Math.round(low);
+    private String formatHighLows(double high, double low, String unit) {
+        double convertedHigh = high, convertedLow = low;
 
-        String highLowStr = roundedHigh + "/" + roundedLow;
-        return highLowStr;
+        if (unit.equals("2")) {
+            convertedHigh = (high * 1.8) + 32;
+            convertedLow = (low * 1.8) + 32;
+        }
+
+        // For presentation, assume the user doesn't care about tenths of a degree.
+        long roundedHigh = Math.round(convertedHigh);
+        long roundedLow = Math.round(convertedLow);
+
+        return roundedHigh + "/" + roundedLow;
     }
 
     /**
@@ -54,7 +62,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
      * Fortunately parsing is easy:  constructor takes the JSON string and converts it
      * into an Object hierarchy for us.
      */
-    private String[] getWeatherDataFromJson(String forecastJsonStr, int numDays)
+    private String[] getWeatherDataFromJson(String forecastJsonStr, int numDays, String unit)
             throws JSONException {
 
         // These are the names of the JSON objects that need to be extracted.
@@ -95,7 +103,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
             double high = temperatureObject.getDouble(OWM_MAX);
             double low = temperatureObject.getDouble(OWM_MIN);
 
-            highAndLow = formatHighLows(high, low);
+            highAndLow = formatHighLows(high, low, unit);
             resultStrs[i] = day + " - " + description + " - " + highAndLow;
         }
 
@@ -188,7 +196,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
         }
 
         try {
-            return getWeatherDataFromJson(forecastJsonStr, numDays);
+            return getWeatherDataFromJson(forecastJsonStr, numDays, params[1]);
         } catch (JSONException e) {
             Log.e(LOG_TAG, e.getMessage(), e);
             e.printStackTrace();
@@ -208,4 +216,5 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
             }
         }
     }
+
 }

@@ -5,11 +5,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- *** -->
     <!-- Menu label to fetch updated weather info from the server -->
     <string name="action_refresh" translatable="false">Refresh</string>
     <string name="title_activity_detail">Details</string>
     <string name="title_activity_settings">Settings</string>
+    <!-- *** -->
 
+    <!-- *** -->
     <!-- Label for the location preference [CHAR LIMIT=30] -->
     <string name="pref_location_label">Location</string>
 
@@ -18,7 +21,9 @@
 
     <!-- Default postal code for location preference [CHAR LIMIT=NONE] -->
     <string name="pref_location_default" translatable="false">94043</string>
+    <!-- *** -->
 
+    <!-- *** -->
     <!-- Label for the temperature preference [CHAR LIMIT=30] -->
     <string name="pref_unit_label">Temperature Units</string>
 
@@ -39,5 +44,6 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+    <!-- *** -->
 
 </resources>
