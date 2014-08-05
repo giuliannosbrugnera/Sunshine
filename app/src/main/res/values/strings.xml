@@ -19,4 +19,25 @@
     <!-- Default postal code for location preference [CHAR LIMIT=NONE] -->
     <string name="pref_location_default" translatable="false">94043</string>
 
+    <!-- Label for the temperature preference [CHAR LIMIT=30] -->
+    <string name="pref_unit_label">Temperature Units</string>
+
+    <!-- Key name for storing location in SharedPreferences [CHAR LIMIT=NONE] -->
+    <string name="pref_unit_key" translatable="false">temperature</string>
+
+    <!-- Default temperature units for location preference [CHAR LIMIT=NONE] -->
+    <string name="pref_unit_default" translatable="false">1</string>
+
+    <!-- Entries for the temperature options [CHAR LIMIT=NONE] -->
+    <string-array name="pref_unit_list_entries">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+
+    <!-- Values for the temperature options [CHAR LIMIT=NONE] -->
+    <string-array name="pref_unit_list_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>
