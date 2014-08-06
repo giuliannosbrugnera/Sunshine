@@ -4,34 +4,22 @@
     <string name="app_name">Sunshine</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_map">Map</string>
 
-    <!-- *** -->
     <!-- Menu label to fetch updated weather info from the server -->
     <string name="action_refresh" translatable="false">Refresh</string>
     <string name="title_activity_detail">Details</string>
     <string name="title_activity_settings">Settings</string>
-    <!-- *** -->
 
-    <!-- *** -->
-    <!-- Label for the location preference [CHAR LIMIT=30] -->
+    <!-- Strings related to location settings -->
     <string name="pref_location_label">Location</string>
-
-    <!-- Key name for storing location in SharedPreferences [CHAR LIMIT=NONE] -->
     <string name="pref_location_key" translatable="false">location</string>
-
-    <!-- Default postal code for location preference [CHAR LIMIT=NONE] -->
     <string name="pref_location_default" translatable="false">94043</string>
-    <!-- *** -->
 
-    <!-- *** -->
-    <!-- Label for the temperature preference [CHAR LIMIT=30] -->
+    <!-- Strings related to units settings -->
     <string name="pref_unit_label">Temperature Units</string>
-
-    <!-- Key name for storing location in SharedPreferences [CHAR LIMIT=NONE] -->
     <string name="pref_unit_key" translatable="false">temperature</string>
-
-    <!-- Default temperature units for location preference [CHAR LIMIT=NONE] -->
-    <string name="pref_unit_default" translatable="false">1</string>
+    <string name="pref_unit_default" translatable="false">metric</string>
 
     <!-- Entries for the temperature options [CHAR LIMIT=NONE] -->
     <string-array name="pref_unit_list_entries">
@@ -41,9 +29,8 @@
 
     <!-- Values for the temperature options [CHAR LIMIT=NONE] -->
     <string-array name="pref_unit_list_values">
-        <item>1</item>
-        <item>2</item>
+        <item>metric</item>
+        <item>imperial</item>
     </string-array>
-    <!-- *** -->
 
 </resources>

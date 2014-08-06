@@ -43,7 +43,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
     private String formatHighLows(double high, double low, String unit) {
         double convertedHigh = high, convertedLow = low;
 
-        if (unit.equals("2")) {
+        if (unit.equals("imperial")) {
             convertedHigh = (high * 1.8) + 32;
             convertedLow = (low * 1.8) + 32;
         }
