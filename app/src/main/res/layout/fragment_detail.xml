@@ -6,7 +6,7 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    tools:context="com.example.android.sunshine.app.DetailActivity$PlaceholderFragment">
+    tools:context="com.example.android.sunshine.app.DetailFragment">
 
     <TextView
         android:id="@+id/detail_text"

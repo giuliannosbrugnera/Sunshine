@@ -44,6 +44,7 @@ public class MainActivity extends ActionBarActivity {
             return true;
         } else if (id == R.id.action_map) {
             openPreferedLocationInMap();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
