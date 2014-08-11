@@ -99,6 +99,19 @@ public class TestDb extends AndroidTestCase {
             assertEquals(testLongitude, longitude);
 
             // Fantastic.  Now that we have a location, add some weather!
+            ContentValues weatherValues = new ContentValues();
+            weatherValues.put(WeatherEntry.COLUMN_LOC_KEY, locationRowId);
+            weatherValues.put(WeatherEntry.COLUMN_DATETEXT, "20141205");
+            weatherValues.put(WeatherEntry.COLUMN_DEGREES, 1.1);
+            weatherValues.put(WeatherEntry.COLUMN_HUMIDITY, 1.2);
+            weatherValues.put(WeatherEntry.COLUMN_PRESSURE, 1.3);
+            weatherValues.put(WeatherEntry.COLUMN_MAX_TEMP, 75);
+            weatherValues.put(WeatherEntry.COLUMN_MIN_TEMP, 65);
+            weatherValues.put(WeatherEntry.COLUMN_SHORT_DESC, "Asteroids");
+            weatherValues.put(WeatherEntry.COLUMN_WIND_SPEED, 5.5);
+            weatherValues.put(WeatherEntry.COLUMN_WEATHER_ID, 321);
+
+            dbHelper.close();
         } else {
             // That's weird, it works on MY machine...
             fail("No values returned :(");
