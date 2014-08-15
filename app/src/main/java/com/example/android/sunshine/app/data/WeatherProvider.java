@@ -40,10 +40,32 @@ public class WeatherProvider extends ContentProvider {
     private static final String sLocationSettingSelection =
             WeatherContract.LocationEntry.TABLE_NAME +
                     "." + WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING + " = ? ";
+
     private static final String sLocationSettingWithStartDateSelection =
             WeatherContract.LocationEntry.TABLE_NAME +
                     "." + WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING + " = ? AND " +
                     WeatherContract.WeatherEntry.COLUMN_DATETEXT + " >= ? ";
+
+    private static final String sLocationSettingAndDaySelection =
+            WeatherContract.LocationEntry.TABLE_NAME +
+                    "." + WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING + " = ? AND " +
+                    WeatherContract.WeatherEntry.COLUMN_DATETEXT + " = ? ";
+
+
+    private Cursor getWeatherByLocationSettingAndDate(
+            Uri uri, String[] projection, String sortOrder) {
+        String locationSetting = WeatherContract.WeatherEntry.getLocationSettingFromUri(uri);
+        String date = WeatherContract.WeatherEntry.getDateFromUri(uri);
+
+        return sWeatherByLocationSettingQueryBuilder.query(mOpenHelper.getReadableDatabase(),
+                projection,
+                sLocationSettingAndDaySelection,
+                new String[]{locationSetting, date},
+                null,
+                null,
+                sortOrder
+        );
+    }
 
     private Cursor getWeatherByLocationSetting(Uri uri, String[] projection, String sortOrder) {
         String locationSetting = WeatherContract.WeatherEntry.getLocationSettingFromUri(uri);
@@ -106,7 +128,7 @@ public class WeatherProvider extends ContentProvider {
         switch (sUriMatcher.match(uri)) {
             // "weather/*/*"
             case WEATHER_WITH_LOCATION_AND_DATE: {
-                retCursor = null;
+                retCursor = getWeatherByLocationSettingAndDate(uri, projection, sortOrder);
                 break;
             }
             // "weather/*"
